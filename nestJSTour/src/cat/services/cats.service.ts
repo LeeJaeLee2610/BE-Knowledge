@@ -12,4 +12,8 @@ export class CatsService{
     create(cat: Cat){
         this.cats.push(cat)
     }
+
+    findOne(id: number){
+        return "No"
+    }
 }

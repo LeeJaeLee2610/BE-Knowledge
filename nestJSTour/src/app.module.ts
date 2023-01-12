@@ -1,4 +1,4 @@
-import { LoggerMiddleware } from './common/logger.middleware';
+import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { CatsModule } from './cat/cats.module';
 import {
   MiddlewareConsumer,
@@ -10,6 +10,7 @@ import {
 @Module({
   imports: [CatsModule],
 })
+
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
