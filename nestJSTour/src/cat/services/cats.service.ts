@@ -9,6 +9,10 @@ export class CatsService{
         return this.cats
     }
 
+    demo(){
+        return "DCM SAO LAI KO DC"
+    }
+
     create(cat: Cat){
         this.cats.push(cat)
     }

@@ -1,4 +1,14 @@
-1) Exception Filters:
+1) Controller
+- Phần nhận request, response và điều hướng router api
+2) Providers
+- Có thể đc coi là provider - services, repositories (Kho lưu trữ) nó có thể injected dependency. (Nơi thực hiện các logic)
+- Providers thường có thời gian trọn đời (scope) được đồng bộ hóa với vòng đời ứng dụng. Khi
+ứng dụng được khởi động, mọi phụ thuộc phải được giải quyết và do đó mọi nhà cung cấp phải được khởi tạo
+- Được xây dựng dựa trên mô hình IoC giống vs angular
+3) Exception Filters:
+- Exception: Là 1 sự cố xảy ra khi 1 route hoặc hàm gọi bị lỗi, exception có thể xảy ra do lỗi logic hoặc lỗi hệ thống, ... Exception có thể được sử lý bằng cách gọi try/catch hoặc sử dụng global error handler
+- Exception Filter: là 1 lớp hoặc hàm chạy sau khi 1 exception được ném ra. Nó có thể dùng để xử lý các exception và trả về lỗi cho người dùng, nó dùng để ghi log lỗi, chuyển hướng ng dùng đến trang lỗi
+- Xử lý ngoại lệ
 http-exception.filter.ts:
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException } from '@nestjs/common';
 import { Request, Response } from 'express';
@@ -20,6 +30,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       });
   }
 }
+- Sử dụng UseFilter để sử dụng http-exception custome
 cats.controller.ts:
 @Post()
 // Liên kết HttpExceptionFilter vs method create()
@@ -27,3 +38,22 @@ cats.controller.ts:
 async create(@Body() createCatDto: CreateCatDto) {
   throw new ForbiddenException();
 }
+4) Pipes
+- Sử dụng để giải quyết 2 vấn đề:
+ + transformation: Chuyển đổi input đầu vào
+ + validation dữ liệu đầu vào
+- implement PipeTranform
+5) Guards
+- Là một lớp được chú thích với @Injectable() trong đó thực hiện implements CanActive interface
+- Nó thường được sử dụng trong authorization
+- Sự khác biệt giữa middleware vs guard: Nó đều là 1 class được chạy trước khi vào route nhưng vs middleware dùng để xử lý mọi yêu cầu còn guard dùng để kiểm tra authorization
+6) Interceptors
+- Trong NestJS, interceptors là 1 chức năng giúp xử lý các yêu cầu và phản hồi trước khi chúng được gửi đến controller hoặc sau khi chúng đc gửi từ controller
+- interceptors là 1 hàm hoặc lớp sử dụng để xử lý các yêu cầu và phản hồi trc khi chúng được gửi đến controller hoặc sau khi đến controller. Nó có thể dùng để xử lý các yêu cầu, chuyển hướng hoặc chặn yêu cầu ko hợp lệ, Nó dùng để xử lý yêu cầu như lấy thông tin từ header, kiểm tra quyền truy cập, ghi log, xử lý các exception
+- Lấy càm hứng từ AOP (Aspect Oriented Programming) chúng có thể làm cho:
+ + Liên kết bổ sung trước/sau khi thực hiện phương thức
+ + Biến đổi kết quả được trả về từ một hàm
+ + Biến đổi ngoại lệ ném từ 1 chức năng
+ + Mở rộng chức năng cơ bản
+- implement NestInterceptor
+Luồng chạy: Middleware -> inside logic interceptor -> chạy vào hàm -> chạy vào next kết thúc interceptor -> sau cuối cùng ms trả về kết quả
