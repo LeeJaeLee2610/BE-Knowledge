@@ -57,3 +57,12 @@ async create(@Body() createCatDto: CreateCatDto) {
  + Mở rộng chức năng cơ bản
 - implement NestInterceptor
 Luồng chạy: Middleware -> inside logic interceptor -> chạy vào hàm -> chạy vào next kết thúc interceptor -> sau cuối cùng ms trả về kết quả
+
+Gateways: Bất cứ nơi nào có thể, tổ hợp tóm tắt các chi tiết triển khai để các thành
+phần giống nhau có thể chạy trên các nền tẳng websockets và microservice
+dựa trên HTTP. Phần này bao gồm các khía cạnh của tố chức dành riêng cho 
+websockets
+
+Trong Nest, một của gateway đơn giản là 1 lớp anotated với công cụ
+@WebSocketGateway() decorator, Về tech các gateway là sự bất khả thi về nền
+tảng WS được hỗ trợ ngoài hộp: socket.io và WS. 

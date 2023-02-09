@@ -33,11 +33,11 @@ import { ApiFileResponse } from './api-file-response.decoartor';
     //   response.send(file);
     // }
   
-    @ApiFileResponse('image/png')
+    @ApiFileResponse('image/jpg')
     @Get('buffer')
     buffer(@Res() response: Response) {
       const file = this.downloadService.imageBuffer();
-      response.contentType('image/png');
+      // response.contentType('image/png');
       response.send(file);
     }
     

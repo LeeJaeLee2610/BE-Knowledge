@@ -6,7 +6,13 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async getHello(): Promise<any> {
+    await this.appService.seed()
+    return "Ok"
+  }
+
+  @Get("/get-employee-by-id")
+  getEBI(): Promise<any> {
+    return this.appService.getEmployeeById(1)
   }
 }

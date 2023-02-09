@@ -13,11 +13,11 @@ export class DownloadService {
   }
 
   imageBuffer() {
-    return readFileSync(join(process.cwd(), 'notiz.png'));
+    return readFileSync(join(process.cwd(), 'demo.jpg'));
   }
 
   imageStream() {
-    return createReadStream(join(process.cwd(), 'notiz.png'));
+    return createReadStream(join(process.cwd(), 'demo.jpg'));
   }
 
   fileBuffer() {
