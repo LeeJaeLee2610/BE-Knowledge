@@ -7,12 +7,12 @@ export class AppController {
 
   @Get()
   async getHello(): Promise<any> {
-    await this.appService.seed()
-    return "Ok"
+    await this.appService.seed();
+    return 'Ok';
   }
 
-  @Get("/get-employee-by-id")
+  @Get('/get-employee-by-id')
   getEBI(): Promise<any> {
-    return this.appService.getEmployeeById(1)
+    return this.appService.getEmployeeById(1);
   }
 }

@@ -66,3 +66,18 @@ websockets
 Trong Nest, một của gateway đơn giản là 1 lớp anotated với công cụ
 @WebSocketGateway() decorator, Về tech các gateway là sự bất khả thi về nền
 tảng WS được hỗ trợ ngoài hộp: socket.io và WS. 
+
+- Core:
+ + Controller: controller
+ + Providers: service
+ + Module
+ + exception Filters
+ + Pipes
+ + Guards
+ + Interceptors
+ + Custom decorator
+- Techniques (Cần học) 3
+- Security ... 2
+- GraphQL ... 4
+- Sockets (OK)
+- microservice ... 1

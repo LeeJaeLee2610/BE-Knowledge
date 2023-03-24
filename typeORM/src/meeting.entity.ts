@@ -1,14 +1,14 @@
 import { Employee } from './employee.entity';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Meeting {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    zoomUrl: string;
+  @Column()
+  zoomUrl: string;
 
-    @ManyToMany(() => Employee, employee => employee.meetings)
-    attendees: Employee[];
+  @ManyToMany(() => Employee, (employee) => employee.meetings)
+  attendees: Employee[];
 }
